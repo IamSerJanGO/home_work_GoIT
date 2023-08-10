@@ -1,6 +1,7 @@
 import shutil
 from pathlib import Path
 import re
+import sys
 
 images_tuple = ('.jpeg', '.png', '.jpg', '.svg')
 video_tuple = ('.avi', '.mp4', '.mov', '.mkv')
@@ -113,15 +114,19 @@ def parser_func(path):
         print(items.name)
 
 
+my_path = sys.argv[1]
+
+
 def main():  # Осноаная функция
+    if len(sys.argv) < 2:
+        print("Usage: python имя_скрипта.py <путь_к_папке>")
+        sys.exit(1)
+
     create_folders(my_path)
     parser_func(my_path)
     normalize(my_path)
     clean_fun(my_path)
 
-
-my_path = 'C:/Users/siren/OneDrive/Рабочий стол/Разобрать'
-parser_func(my_path)
 
 if __name__ == '__main__':
     main()
